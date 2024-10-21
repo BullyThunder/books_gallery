@@ -1,0 +1,8 @@
+.gallery{
+    background-color: antiquewhite;
+    border-radius: 10px;
+    &__container{
+        @extend .container
+    }
+
+}

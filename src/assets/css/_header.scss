@@ -1,0 +1,24 @@
+.header{
+    font-family: "Lato", sans-serif ;
+    font-weight: 400;
+    font-size: 20px;
+    font-style: normal;
+    &__container{
+        @extend .container
+    }
+    &__content{
+        background-color: antiquewhite;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 150px;
+        ul li{
+            cursor: pointer;
+        }
+    }
+    &__image{
+        max-width: 120px;
+        max-height: 120px;
+    }
+}

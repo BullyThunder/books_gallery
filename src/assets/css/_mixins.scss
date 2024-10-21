@@ -1,0 +1,10 @@
+@mixin media($resolution){
+    @media (max-width: $resolution){
+        @content;
+    }
+}
+@mixin media_min ($resolution){
+    @media (min-width: $resolution){
+        @content;
+    }
+}
