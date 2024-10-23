@@ -27,10 +27,15 @@ body {
   font-style: normal;
 }
 
-.container, .gallery__container, .header__container {
+.container, .cardbook, .gallery__container, .header__container {
   max-width: 1480px;
   margin: 0px auto;
   padding: 10px;
+}
+
+.fa-star {
+  font-size: 24px;
+  cursor: pointer;
 }
 
 @media (max-width: 780px) {
@@ -66,11 +71,8 @@ body {
   border-radius: 10px;
 }
 .cardbook {
-  display: flex;
-  -moz-column-gap: 30px;
-       column-gap: 30px;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .cardbook ul {
   border: 1px solid black;

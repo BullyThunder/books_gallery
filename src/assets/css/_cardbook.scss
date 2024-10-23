@@ -1,8 +1,7 @@
 .cardbook{
-    display: flex;
-    column-gap: 30px;
-    align-items: center;
-    justify-content: center;
+    @extend .container;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     & ul{
         border: 1px solid black;
         display: flex;
