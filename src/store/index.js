@@ -9,23 +9,22 @@ export const useBookStore = defineStore('gallery', ()=>{
         {id:4, title: "The truth about the Harry Quebert case",img: new URL('@/assets/img/true_about_diccer.jpg', import.meta.url).href,author: "Dicker",rating:0,is_read:false},
     ]);
     const savedBooks  = () => {
-       const ratings = books.value.reduce((acc,book)=>{
+        const rating = books.value.reduce((acc,book)=>{
             acc[book.id] = book.rating;
-            return acc;  
+            return acc;
         }, {});
-        localStorage.setItem('Booksrating',JSON.stringify(ratings));
+        localStorage.setItem("rating",JSON.stringify(rating));
     }
     const loadRating =() =>{
-       const store_rating = localStorage.getItem('Booksrating');
-       if(store_rating){
-       const parse_rating = JSON.parse(store_rating);
+        const get_rating = JSON.parse(localStorage.getItem('rating'));
+        if(get_rating){
         books.value.forEach(book => {
-            if( parse_rating[book.id] !== undefined){
-                book.rating = parse_rating[book.id]
-            }
+        if(get_rating[book.id] !== undefined){
+            book.rating = get_rating[book.id];
+        }
         });
-       }
-    }
+        }
+       };
     const add_to_book = (newBook) =>{
         books.value.push(newBook);
     };
