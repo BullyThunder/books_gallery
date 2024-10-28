@@ -8,11 +8,23 @@ export const useBookStore = defineStore('gallery', ()=>{
         {id:3, title: "The truth about the Harry Quebert case",img: new URL('@/assets/img/true_about_diccer.jpg', import.meta.url).href,author: "Dicker",rating:0,is_read:false},
         {id:4, title: "The truth about the Harry Quebert case",img: new URL('@/assets/img/true_about_diccer.jpg', import.meta.url).href,author: "Dicker",rating:0,is_read:false},
     ]);
-    const loadBooks = () => {
-        const savedBooks = localStorage.getItem('book');
-        if(savedBooks){
-            books.value = JSON.parse(savedBooks);
-        }
+    const savedBooks  = () => {
+       const ratings = books.value.reduce((acc,book)=>{
+            acc[book.id] = book.rating;
+            return acc;  
+        }, {});
+        localStorage.setItem('Booksrating',JSON.stringify(ratings));
+    }
+    const loadRating =() =>{
+       const store_rating = localStorage.getItem('Booksrating');
+       if(store_rating){
+       const parse_rating = JSON.parse(store_rating);
+        books.value.forEach(book => {
+            if( parse_rating[book.id] !== undefined){
+                book.rating = parse_rating[book.id]
+            }
+        });
+       }
     }
     const add_to_book = (newBook) =>{
         books.value.push(newBook);
@@ -24,8 +36,8 @@ export const useBookStore = defineStore('gallery', ()=>{
 
     const edit_star = (n,book) => {
         book.rating = n;
-        localStorage.setItem('rating',JSON.stringify(book.rating));
+        savedBooks();
 };
-loadBooks();
-  return {books,add_to_book,remove_book,edit_star,loadBooks};
+loadRating();
+  return {books,add_to_book,remove_book,edit_star,loadRating};
 });
