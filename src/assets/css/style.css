@@ -73,6 +73,7 @@ body {
 .cardbook {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
 }
 .cardbook ul {
   border: 1px solid black;

@@ -8,6 +8,7 @@
             ? 'fa-solid fa-star ' : 'fa-regular fa-star '" @click="BookStore.edit_star(n,book)">
                 </i></li>
             <li>{{ book.is_read }}</li>
+            <li><button @click="BookStore.remove_book(book.id)" class="button is-danger is-rounded">Delete</button></li>
         </ul>
         <ul>
         </ul>
