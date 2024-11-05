@@ -5,6 +5,7 @@
             <li><img class="cardbook__image" :src="cart.img" alt="Book cover" /></li>
             <li>{{cart.author}}</li>
             <li ><button @click="BookStore.remove_forever(cart.id)" class="button is-danger is-rounded">Delete</button></li>
+            <li ><button @click="BookStore.returnToGallery(cart.id)" class="button is-danger is-rounded">Return</button></li>
         </ul>
     </div>
 </template>

@@ -7,7 +7,6 @@
 }
 .header__content {
   background-color: antiquewhite;
-  border-radius: 10px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -25,12 +24,13 @@ body {
   font-family: "Lato", sans-serif !important;
   font-weight: 400;
   font-style: normal;
+  background-color: antiquewhite;
+  min-height: 100vh;
 }
 
 .container, .cardbook, .gallery__container, .header__container {
   max-width: 1480px;
   margin: 0px auto;
-  padding: 10px;
 }
 
 .fa-star {
@@ -67,9 +67,15 @@ body {
   font-family: "Lato", sans-serif !important;
   font-weight: 400;
   font-style: normal;
-  background-color: antiquewhite;
   border-radius: 10px;
 }
+.gallery__padding {
+  padding-bottom: 15px;
+}
+.gallery_btn-padding {
+  margin-top: 15px;
+}
+
 .cardbook {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -83,6 +89,7 @@ body {
   align-items: center;
   -moz-column-gap: 30px;
        column-gap: 30px;
+  row-gap: 5px;
   padding: 10px;
   background-color: aliceblue;
 }
