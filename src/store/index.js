@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import {ref} from 'vue';
+import {ref,computed} from 'vue';
 
 export const useBookStore = defineStore('gallery', ()=>{
     const initial_books = [
@@ -46,7 +46,7 @@ export const useBookStore = defineStore('gallery', ()=>{
 };
     const returnToGallery = (itemId) =>{
         const temp_return = basket_cart.value.find(item => item.id === itemId);
-        if(temp_return !== undefined){
+        {
         books.value.push(temp_return);
         const selectedIndex = basket_cart.value.indexOf(temp_return);
         if(selectedIndex >-1){
@@ -107,6 +107,22 @@ export const useBookStore = defineStore('gallery', ()=>{
         localStorage.removeItem("basket_cart");
         localStorage.removeItem("rating");
        }
+       let isVisible_book = ref(true);
+       let isVisible_filtered = ref(false);
+       let search_temp = ref("");
+       const filteredCard = ref([]);
+
+       const search_gallery = computed(() =>{
+        if (!search_temp.value) {
+            return books.value; // Показываем все книги, если поиск пуст
+        }
+               return filteredCard.value = books.value.filter(
+                    item => item.name && item.name.toLowerCase().includes(search_temp.value.toLowerCase())
+                );
+            });
+           
    load_page(); 
-  return {books,remove_book,edit_star,load_page,basket_cart,remove_forever,returnToGallery,resetGallery};
+  return {books,remove_book,edit_star,load_page,basket_cart,remove_forever,
+    returnToGallery,resetGallery,search_gallery,
+    search_temp,filteredCard,isVisible_book,isVisible_filtered};
 });

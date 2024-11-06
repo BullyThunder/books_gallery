@@ -1,5 +1,5 @@
 <template>
-    <div class="cardbook cardbook__container">
+    <div  class="cardbook cardbook__container">
         <ul v-for="cart in BookStore.basket_cart" :key="cart.id">
             <li>{{ cart.title }}</li>
             <li><img class="cardbook__image" :src="cart.img" alt="Book cover" /></li>
@@ -12,7 +12,10 @@
 
 <script setup>
 import {useBookStore} from '@/store/index.js';
+
 const BookStore = useBookStore();
+
+
 </script>
 
 <style>
