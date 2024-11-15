@@ -9,6 +9,7 @@
 import cardBook from './cardBook.vue';
 import {useBookStore} from '@/store/index.js';
 const BookStore = useBookStore();
+
 </script>
 
 <style>

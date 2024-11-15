@@ -11,4 +11,5 @@
   // @ is an alias to /src
   import mainHeader from '@/components/mainHeader.vue';
   import mainGallery from '@/components/mainGallery.vue';
+
   </script>

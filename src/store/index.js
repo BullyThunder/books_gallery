@@ -13,10 +13,11 @@ export const useBookStore = defineStore('gallery', ()=>{
     const basket_cart = ref([]);
     const savedBooks  = () => {
         const rating = books.value.reduce((acc,book)=>{
-            acc[book.id] = book.rating;
+            acc[book.id] = book.rating || 0;
             return acc;
         }, {});
         localStorage.setItem("rating",JSON.stringify(rating));
+        console.log('Сохраняемый рейтинг:', rating);
     }
     /*
     const add_to_book = (newBook) =>{
@@ -53,15 +54,17 @@ export const useBookStore = defineStore('gallery', ()=>{
         }
         localStorage.setItem("basket_cart",JSON.stringify(basket_cart.value));
         localStorage.setItem("books",JSON.stringify(books.value));
+        localStorage.setItem("rating",JSON.stringify(books.value.rating));
         }
     }
     const load_page = () => {
         try {
             const get_rating = localStorage.getItem('rating');
-            if (get_rating) {
+            if (get_rating !==null) {
                 const parsedRating = JSON.parse(get_rating);
                 books.value.forEach(book => {
                     if (parsedRating[book.id] !== undefined) {
+                        console.log(books.value.rating)
                         book.rating = parsedRating[book.id];
                     }
                 });
@@ -69,12 +72,14 @@ export const useBookStore = defineStore('gallery', ()=>{
     
             const saved_books = localStorage.getItem("books");
             if (saved_books) {
+                
                 const parsedBooks = JSON.parse(saved_books);
                 if (Array.isArray(parsedBooks)) {
+                    
                     books.value = parsedBooks;
                 }
             }
-    
+
             const saved_basket = localStorage.getItem("basket_cart");
             if (saved_basket) {
                 const parsedBasket = JSON.parse(saved_basket);
@@ -90,11 +95,11 @@ export const useBookStore = defineStore('gallery', ()=>{
                     books.value = parsedGallery;
                 }
             }
-    
-            // Удаляем все null значения после загрузки данных
+            
+            localStorage.clear();
             books.value = books.value.filter(book => book !== null);
             basket_cart.value = basket_cart.value.filter(book => book !== null);
-    
+            
         } catch (error) {
             console.error("Ошибка загрузки данных:", error);
         }
@@ -119,9 +124,8 @@ export const useBookStore = defineStore('gallery', ()=>{
                     item => item.name && item.name.toLowerCase().includes(search_temp.value.toLowerCase())
                 );
             });
-           
-   load_page(); 
-  return {books,remove_book,edit_star,load_page,basket_cart,remove_forever,
+                    load_page();
+  return {books,load_page,savedBooks,remove_book,edit_star,basket_cart,remove_forever,
     returnToGallery,resetGallery,search_gallery,
     search_temp,filteredCard,isVisible_book,isVisible_filtered
     };

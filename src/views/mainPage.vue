@@ -1,6 +1,7 @@
 <template>
   <div>
     <mainHeader/>
+    <h5>Welcome to Books Gallery</h5>
   </div>
 </template>
 <style lang="scss">
