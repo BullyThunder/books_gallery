@@ -3,12 +3,11 @@ import {ref,computed} from 'vue';
 
 export const useBookStore = defineStore('gallery', ()=>{
     const initial_books = [
-        {id:1, title: "Fire and sword", img: new URL('@/assets/img/fire_and_sword.jpg', import.meta.url).href,author: "Senkevich",rating:2,is_read:false},
+        {id:1, title: "Fire and sword", img: new URL('@/assets/img/fire_and_sword.jpg', import.meta.url).href,author: "Senkevich",rating:0,is_read:false},
         {id:2, title: "War and Peace",img: new URL('@/assets/img/war_and_peace.jfif', import.meta.url).href,author: "Tolstoy",rating:0,is_read:false},
         {id:3, title: "The truth about the Harry Quebert case",img: new URL('@/assets/img/true_about_diccer.jpg', import.meta.url).href,author: "Dicker",rating:0,is_read:false},
-        {id:4, title: "The truth about the Harry Quebert case",img: new URL('@/assets/img/true_about_diccer.jpg', import.meta.url).href,author: "Dicker",rating:0,is_read:false},
-        {id:5, title: "The truth about the Harry Quebert case",img: new URL('@/assets/img/true_about_diccer.jpg', import.meta.url).href,author: "Dicker",rating:0,is_read:false},
-        {id:6, title: "Fire and sword", img: new URL('@/assets/img/fire_and_sword.jpg', import.meta.url).href,author: "Senkevich",rating:2,is_read:false}
+        {id:4, title: "Transerfing reality",img: new URL('@/assets/img/tranfer.jfif', import.meta.url).href,author: "Zelland",rating:0,is_read:false},
+        {id:5, title: "Importants times",img: new URL('@/assets/img/important_times.png', import.meta.url).href,author: "Jay",rating:0,is_read:false},
     ];
     const books = ref([...initial_books]);
     const basket_cart = ref([]);
@@ -124,5 +123,6 @@ export const useBookStore = defineStore('gallery', ()=>{
    load_page(); 
   return {books,remove_book,edit_star,load_page,basket_cart,remove_forever,
     returnToGallery,resetGallery,search_gallery,
-    search_temp,filteredCard,isVisible_book,isVisible_filtered};
+    search_temp,filteredCard,isVisible_book,isVisible_filtered
+    };
 });

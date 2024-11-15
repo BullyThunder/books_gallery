@@ -1,0 +1,23 @@
+.slider{
+    &__container{
+        @extend .container;
+    }
+    &__content{
+        display: flex;
+        column-gap: 20px;
+        justify-content: center;
+        & img{
+            width: 250px;
+            height: 250px;
+        }
+    }
+    &__padding{
+        padding-top: 20px;
+        padding-bottom: 40px;
+    }
+    &__array{
+        display: flex;
+        justify-content: center;
+        column-gap: 40px;
+    }
+}

@@ -10,8 +10,6 @@
             <li>{{ book.is_read }}</li>
             <li><button @click="BookStore.remove_book(book.id)" class="button is-danger is-rounded">Delete</button></li>
         </ul>
-        <ul>
-        </ul>
     </div>
 </template>
 

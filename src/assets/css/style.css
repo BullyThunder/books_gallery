@@ -28,7 +28,7 @@ body {
   min-height: 100vh;
 }
 
-.container, .cardbook, .gallery__container, .header__container {
+.container, .slider__container, .cardbook, .gallery__container, .header__container {
   max-width: 1480px;
   margin: 0px auto;
 }
@@ -89,6 +89,7 @@ body {
   align-items: center;
   -moz-column-gap: 30px;
        column-gap: 30px;
+  width: 70%;
   row-gap: 5px;
   padding: 10px;
   background-color: aliceblue;
@@ -102,4 +103,25 @@ body {
 }
 .cardbook__title {
   font-size: 20px;
+}
+
+.slider__content {
+  display: flex;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  justify-content: center;
+}
+.slider__content img {
+  width: 250px;
+  height: 250px;
+}
+.slider__padding {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+.slider__array {
+  display: flex;
+  justify-content: center;
+  -moz-column-gap: 40px;
+       column-gap: 40px;
 }/*# sourceMappingURL=style.css.map */
