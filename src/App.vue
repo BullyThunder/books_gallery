@@ -1,7 +1,15 @@
 <template>
   <router-view/>
 </template>
+<script setup>
+import {useBookStore} from '@/store/index.js';
+import { onMounted } from 'vue';
+const BookStore = useBookStore();
+onMounted(() => {
+    BookStore.load_page();
+});
 
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

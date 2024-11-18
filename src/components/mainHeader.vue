@@ -1,29 +1,39 @@
 <template>
   <div class="header header__container">
-   <div class="header__content">
-    <img class="header__image" src="../assets/img/book.png" alt="book">
-    <ul>
-      <li><router-link to="/">Main</router-link></li>
-      <li><router-link to="/galleryPage">Gallery</router-link></li>
-      <li><router-link to="/basketPage">Basket</router-link></li>
-    </ul>
-    <div class="field has-addons">
-  <div class="control">
-    <input class="input" v-model="BookStore.search_temp" type="text" placeholder="Find a book">
-  </div>
-  <div class="control">
-    <button @click="BookStore.search_gallery" class="button is-info">
-      Search
-    </button>
-  </div>
-</div>
-</div>
+    <div class="header__content">
+      <img class="header__image" src="../assets/img/book.png" alt="book">
+      <ul>
+        <li><router-link to="/">Main</router-link></li>
+        <li><router-link to="/galleryPage">Gallery</router-link></li>
+        <li><router-link to="/basketPage">Basket</router-link></li>
+      </ul>
+
+      <div class="field has-addons">
+        <div class="control">
+          <input 
+            class="input" 
+            v-model="search_temp" 
+            @input="updateSearch" 
+            type="text" 
+            placeholder="Find a book"
+          >
+        </div>
+        <div class="control">
+          <button @click="updateSearch" class="button is-info">
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
-
 <script setup>
 import {useBookStore} from '@/store/index.js';
 const BookStore = useBookStore();
+const search = BookStore.search_temp || "";
+if (search.trim() === "") {
+    // обработка пустого ввода
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
