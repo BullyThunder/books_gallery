@@ -5,9 +5,11 @@
 import {useBookStore} from '@/store/index.js';
 import { onMounted } from 'vue';
 const BookStore = useBookStore();
+
 onMounted(() => {
     BookStore.load_page();
 });
+
 
 </script>
 <style lang="scss">

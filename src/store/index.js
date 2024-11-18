@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import {ref,computed,onMounted} from 'vue';
+import {ref,computed,watch} from 'vue';
 
 export const useBookStore = defineStore('gallery', ()=>{
     const initial_books = [
@@ -54,7 +54,6 @@ export const useBookStore = defineStore('gallery', ()=>{
         }
         localStorage.setItem("basket_cart",JSON.stringify(basket_cart.value));
         localStorage.setItem("books",JSON.stringify(books.value));
-        localStorage.setItem("rating",JSON.stringify(books.value.rating));
         }
     }
     const load_page = () => {
@@ -96,9 +95,7 @@ export const useBookStore = defineStore('gallery', ()=>{
                 }
             }
             
-          
-            basket_cart.value = basket_cart.value.filter(book => book !== null);
-            
+           
         } catch (error) {
             console.error("Ошибка загрузки данных:", error);
         }
@@ -123,10 +120,11 @@ export const useBookStore = defineStore('gallery', ()=>{
                 item.title.toLowerCase().includes(search_temp.value.trim().toLowerCase())
             );
         }
-    });
-    onMounted(()=>{
-        load_page();  
     })
+    watch(books, (newBooks) => {
+        console.log('Books изменились', newBooks);
+        localStorage.setItem("books",JSON.stringify(newBooks));
+    }, { deep: true });    
   return {books,load_page,savedBooks,remove_book,edit_star,basket_cart,remove_forever,
     returnToGallery,resetGallery,search_gallery,
     search_temp,filteredCard,isVisible_book,isVisible_filtered
