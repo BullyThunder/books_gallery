@@ -56,6 +56,8 @@ export const useBookStore = defineStore('gallery', ()=>{
         localStorage.setItem("books",JSON.stringify(books.value));
         }
     }
+
+    // action when page is loading
     const load_page = () => {
         try {
             const get_rating = localStorage.getItem('rating');
@@ -100,6 +102,8 @@ export const useBookStore = defineStore('gallery', ()=>{
             console.error("Ошибка загрузки данных:", error);
         }
     };
+
+    // reset data in gallery
        const resetGallery = () =>{
         books.value = [...initial_books];
         basket_cart.value = [];
@@ -107,26 +111,45 @@ export const useBookStore = defineStore('gallery', ()=>{
         localStorage.removeItem("basket_cart");
         localStorage.removeItem("rating");
        }
-       let isVisible_book = ref(true);
-       let isVisible_filtered = ref(false);
+       let isVisible_book = ref(false);
+       let isVisible_basket = ref(false);
        let search_temp = ref("");
        const filteredCard = ref([]);
-
        const search_gallery = computed(() => {
         if (!search_temp.value.trim()) {
-            return books.value;  // Показываем все книги, если поиск пустой
+            return books.value; 
         } else {
-            return filteredCard.value = books.value.filter((item) =>
+            return books.value.filter((item) =>
                 item.title.toLowerCase().includes(search_temp.value.trim().toLowerCase())
             );
         }
-    })
+    });
+
+    // search in basket
+    let basket_temp = ref("");
+        const search_basket = computed (()=>{
+            if(!basket_temp.value.trim()){
+                console.log(basket_cart.value);
+                return basket_cart.value;
+            }
+            else{
+                console.log(basket_cart.value);
+                return basket_cart.value.filter((items)=>
+                    items.title.toLowerCase().includes(basket_temp.value.trim().toLowerCase()))
+            }
+        })
+
     watch(books, (newBooks) => {
-        console.log('Books изменились', newBooks);
         localStorage.setItem("books",JSON.stringify(newBooks));
-    }, { deep: true });    
+    }, { deep: true });  
+    /*
+    watch(search_basket, (newBasket) => {
+        localStorage.setItem("search_basket",JSON.stringify(newBasket));
+    }, { deep: true });
+    */  
   return {books,load_page,savedBooks,remove_book,edit_star,basket_cart,remove_forever,
     returnToGallery,resetGallery,search_gallery,
-    search_temp,filteredCard,isVisible_book,isVisible_filtered
+    search_temp,filteredCard,isVisible_book,search_basket,
+    isVisible_basket
     };
 });

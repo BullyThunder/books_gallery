@@ -1,6 +1,6 @@
 <template>
-    <div v-if="BookStore.search_temp.trim() === ''" class="cardbook cardbook__container">
-        <ul  v-for="book in BookStore.books" :key="book.id">
+    <div class="cardbook cardbook__container">
+        <ul  v-for="book in BookStore.search_gallery" :key="book.id">
             <li class="cardbook__title">{{ book.title }}</li>
             <li><img class="cardbook__image" :src="book.img" alt="Book cover" /></li>
             <li>{{ book.author }}</li>

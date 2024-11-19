@@ -8,18 +8,32 @@
         <li><router-link to="/basketPage">Basket</router-link></li>
       </ul>
 
-      <div class="field has-addons">
+      <div v-if="$route.name === 'gallery'" class="field has-addons">
         <div class="control">
           <input 
             class="input" 
-            v-model="search_temp" 
-            @input="updateSearch" 
+            v-model="BookStore.search_temp" 
             type="text" 
             placeholder="Find a book"
           >
         </div>
         <div class="control">
-          <button @click="updateSearch" class="button is-info">
+          <button  class="button is-info">
+            Search
+          </button>
+        </div>
+      </div>
+      <div v-if="$route.name === 'basket'" class="field has-addons">
+        <div class="control">
+          <input 
+            class="input" 
+            v-model="BookStore.basket_temp" 
+            type="text" 
+            placeholder="Find a book"
+          >
+        </div>
+        <div class="control">
+          <button  class="button is-info">
             Search
           </button>
         </div>
@@ -30,10 +44,6 @@
 <script setup>
 import {useBookStore} from '@/store/index.js';
 const BookStore = useBookStore();
-const search = BookStore.search_temp || "";
-if (search.trim() === "") {
-    // обработка пустого ввода
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

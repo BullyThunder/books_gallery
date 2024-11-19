@@ -11,7 +11,6 @@ import cardBook from './cardBook.vue';
 import mainFiltered from './mainFiltered.vue';
 import {useBookStore} from '@/store/index.js';
 const BookStore = useBookStore();
-
 </script>
 
 <style>
