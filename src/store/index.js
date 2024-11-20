@@ -150,6 +150,6 @@ export const useBookStore = defineStore('gallery', ()=>{
   return {books,load_page,savedBooks,remove_book,edit_star,basket_cart,remove_forever,
     returnToGallery,resetGallery,search_gallery,
     search_temp,filteredCard,isVisible_book,search_basket,
-    isVisible_basket
+    isVisible_basket,basket_temp
     };
 });
