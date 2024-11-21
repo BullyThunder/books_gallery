@@ -97,6 +97,9 @@ body {
 .cardbook ul li {
   max-width: 170px;
 }
+.cardbook_element {
+  cursor: pointer;
+}
 .cardbook__image {
   max-width: 200px;
   max-height: 200px;
